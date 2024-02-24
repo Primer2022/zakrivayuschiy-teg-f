@@ -1,62 +1,79 @@
-/* В этом файле вы опишете значения переменных в разных цветовых схемах.
-Придерживайтесь такого именования классов:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ не забудьте описать стили для изменения темы через медизапрос пользовательских предпочтений
-*/
-
 :root.theme-dark {
-    --main-font: "Inter-Variable";
-    --second-font: "PressStart2P-Regular";
-    --first-font-weidth: 465;
-    --second-font-weidth: 785;
-    --background-color: #000;
-    --font-color: #00CC14;
+  --main-font: "Inter-Variable";
+  --second-font: "PressStart2P";
+  --first-font-weidth: 465;
+  --second-font-weidth: 785;
+  --background-color: #000;
+  --font-color: #00cc14;
+  --background-image: url(../images/background-dark.jpg);
+  --heart-color: red;
+  --heart-hover-color: #00cc14;
+  --heart-contour-color: #00cc14;
 
-    .page {
-        background-image: url("../images/background-dark.jpg");
-    }
+  .cards__save-button:hover .floppy {
+    fill: var(--background-color);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --main-font: "Inter-Variable";
-        --second-font: "PressStart2P-Regular";
-        --first-font-weidth: 465;
-        --second-font-weidth: 785;
-        --background-color: #000;
-        --font-color: #00CC14;
-    }
+  :root {
+    --main-font: "Inter-Variable";
+    --second-font: "PressStart2P";
+    --first-font-weidth: 465;
+    --second-font-weidth: 785;
+    --background-color: #000;
+    --font-color: #00cc14;
+    --background-image: url(../images/background-dark.jpg);
+    --heart-color: red;
+    --heart-hover-color: #00cc14;
+    --heart-contour-color: #00cc14;
+  }
 
-    .page {
-        background-image: url("../images/background-dark.jpg");
-    }
+  .cards__save-button:hover .floppy {
+    fill: var(--background-color);
+  }
 }
 
 :root.theme-light {
+  --main-font: "Inter-Variable";
+  --second-font: "PressStart2P";
+  --first-font-weidth: 400;
+  --second-font-weidth: 700;
+  --background-color: #fff;
+  --font-color: #000;
+  --background-image: url(../images/background-light.jpg);
+  --heart-color: red;
+  --heart-hover-color: #000;
+  --heart-contour-color: #000;
+
+  .button:hover .button__text {
+    color: var(--background-color);
+  }
+
+  .cards__save-button:hover .floppy {
+    fill: var(--background-color);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
     --main-font: "Inter-Variable";
-    --second-font: "PressStart2P-Regular";
+    --second-font: "PressStart2P";
     --first-font-weidth: 400;
     --second-font-weidth: 700;
     --background-color: #fff;
     --font-color: #000;
+    --background-image: url(../images/background-light.jpg);
+    --heart-color: red;
+    --heart-hover-color: #000;
+    --heart-contour-color: #000;
 
-    .page {
-        background-image: url("../images/background-light.jpg");
+    .button:hover .button__text {
+      color: var(--background-color);
     }
-}
+  }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --main-font: "Inter-Variable";
-        --second-font: "PressStart2P-Regular";
-        --first-font-weidth: 400;
-        --second-font-weidth: 700;
-        --background-color: #fff;
-        --font-color: #000;
-    }
-
-    .page {
-        background-image: url("../images/background-light.jpg");
-    }
+  .cards__save-button:hover .floppy {
+    fill: var(--background-color);
+  }
 }

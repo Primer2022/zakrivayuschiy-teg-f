@@ -1,9 +1,12 @@
-/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
 :root {
     --main-font: "Inter-Variable";
-    --second-font: "PressStart2P-Regular";
+    --second-font: "PressStart2P";
     --first-font-weidth: 400;
     --second-font-weidth: 700;
     --background-color: #fff;
     --font-color: #000;
+    --background-image: url(../images/background-light.jpg);
+    --heart-color: red;
+    --heart-hover-color: #000;
+    --heart-contour-color: #000;
 }

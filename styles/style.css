@@ -1,35 +1,19 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
-
-*/
-
-dialog {
+.floppy-dialog {
   border: 2px solid var(--font-color);
   background: var(--background-color);
   padding: 30px 47px 30px 47px;
 }
 
-dialog::backdrop {
+.floppy-dialog::backdrop {
   background-color: rgb(0 0 0 / 0.75);
 }
 
-.dialog-info {
+.floppy-dialog-info {
   display: flex;
   gap: 20px;
 }
 
-.dialog-image {
+.floppy-dialog-image {
   color: var(--font-color);
   margin-top: 12px;
   margin-bottom: 12px;
@@ -37,7 +21,7 @@ dialog::backdrop {
   height: 39px;
 }
 
-.dialog-text {
+.floppy-dialog-text {
   font-size: 14px;
   font-family: var(--second-font);
   color: var(--font-color);
@@ -45,7 +29,7 @@ dialog::backdrop {
   text-transform: uppercase;
 }
 
-.dialog-button {
+.floppy-dialog-button {
   margin-top: 30px;
   width: 100%;
 }
@@ -60,20 +44,26 @@ dialog::backdrop {
   border: 2px solid var(--font-color);
   cursor: pointer;
   overflow: hidden;
-  z-index: 1;
   color: var(--font-color);
-  transition: 0.5s ease-in-out;
+  transition: color 0.5s ease-in-out;
+  transition: box-shadow 0.3s ease;
 }
 
 .button:focus {
   outline: none;
-  box-shadow: var(--font-color) 2px 2px;
-  transition: .3s ease;
 }
 
+.button:focus-visible {
+  box-shadow: var(--font-color) 2px 2px;
+}
 
-.button:hover {
-  color: white;
+.button__text {
+  z-index: 1;
+}
+
+.button:hover .button__text {
+  mix-blend-mode: difference;
+  transition: mix-blend-mode 0.5s ease-in-out;
 }
 
 .button::before {
@@ -84,17 +74,12 @@ dialog::backdrop {
   width: 100%;
   height: 100%;
   background-color: var(--font-color);
-  transition: 0.5s;
+  transition: transform 0.5s ease-in-out;
   transform: translateX(-100%);
-  z-index: -1;
 }
 
 .button:hover::before {
   transform: translateX(0);
-}
-
-.heart-outline {
-  fill: var(--font-color);
 }
 
 .page {
@@ -103,14 +88,13 @@ dialog::backdrop {
   min-block-size: 100dvb;
   max-inline-size: 696px;
   font-family: var(--main-font), Arial, sans-serif;
-  font-variation-settings: 'wght' var(--first-font-weidth);
+  font-variation-settings: "wght" var(--first-font-weidth);
   background-repeat: no-repeat;
-  background-position: top;
   background-size: cover;
   background-color: var(--background-color);
   background-attachment: fixed;
   background-position: center;
-  background-image: url("../images/background-light.jpg");
+  background-image: var(--background-image);
   color: var(--font-color);
 }
 
@@ -127,6 +111,12 @@ dialog::backdrop {
   text-align: center;
   font-family: var(--second-font), Arial, sans-serif;
   font-size: 65px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.header__title:focus {
+  outline: none;
 }
 
 .header__subtitle {
@@ -157,6 +147,7 @@ dialog::backdrop {
   font-size: 14px;
   cursor: pointer;
   text-transform: uppercase;
+  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button:disabled {
@@ -167,42 +158,41 @@ dialog::backdrop {
 .theme-menu__button:disabled::before {
   position: relative;
   content: "▶";
-  animation: pointer 0.5s infinite alternate-reverse ease-in-out;
+  animation: pointer 0.5s infinite alternate ease-in-out;
 }
 
 .theme-menu__button:focus {
   outline: none;
   opacity: 0.6;
-  transition: .3s;
 }
 
 .theme-menu__button:hover {
   opacity: 0.6;
-  transition: .3s;
 }
 
 .theme-menu__button::after {
   position: absolute;
-  content: '';
+  content: "";
   bottom: 0;
-  display: block;
   width: 0;
+  display: block;
   height: 2px;
   background: var(--font-color);
-  transition: .3s;
+  transition: 0.3s ease;
 }
 
-.theme-menu__button:focus::after {
+.theme-menu__button:focus-visible::after {
   width: calc(100% - 0.8rem);
 }
 
-.cards {
+.card__list {
   display: flex;
   flex-direction: column;
   gap: 52px;
 }
 
 .card {
+  position: relative;
   font-size: 18px;
   background-color: var(--background-color);
   border: 2px solid var(--font-color);
@@ -212,51 +202,105 @@ dialog::backdrop {
 .card-title {
   font-size: 18px;
   padding: 3px 0 5px 10px;
-  font-variation-settings: 'wght' var(--second-font-weidth);
+  font-variation-settings: "wght" var(--second-font-weidth);
 }
 
-.card-image {
-  max-width: 696px;
+.card-image__container {
   width: calc(100vw - (100vw - 100%));
   outline: 2px solid var(--font-color);
 }
 
-.card-image-2 {
+.card-image {
+  display: block;
+  width: inherit;
+  object-position: center;
+  object-fit: cover;
+}
+
+.card::after {
+  font-family: var(--second-font), Arial, sans-serif;
+  text-shadow: -1px -1px 0 var(--background-color),
+    0 -1px 0 var(--background-color), 1px -1px 0 var(--background-color),
+    1px 0 0 var(--background-color), 1px 1px 0 var(--background-color),
+    0 1px 0 var(--background-color), -1px 1px 0 var(--background-color),
+    -1px 0 0 var(--background-color);
+  font-size: 14px;
+  line-height: 22.09px;
+  position: absolute;
+  top: 50px;
+  right: 25px;
+  opacity: 0.5;
+}
+
+.card:nth-child(1)::after {
+  content: "</HTML>";
+}
+
+.card:nth-child(2) .card-image {
   filter: contrast(10);
 }
 
-.card-image-3 {
+.card:nth-child(2)::after {
+  content: "</HTML>";
+}
+
+.card:nth-child(3) .card-image {
   filter: brightness(500%);
 }
 
-.card-image-4 {
-  filter: grayscale(1);
-  filter: sepia(1);
+.card:nth-child(3)::after {
+  content: "<CSS>";
 }
 
-.card-image-5 {
+.card:nth-child(4) .card-image {
+  filter: grayscale(1) sepia(1);
+}
+
+.card:nth-child(4)::after {
+  content: "<desigions>";
+}
+
+.card:nth-child(5) .card-image {
   filter: invert(1);
 }
 
-.card-image-6 {
-  filter: sepia(.5);
+.card:nth-child(5)::after {
+  content: "care";
 }
 
-.card-image-7 {
+.card:nth-child(6) .card-image {
+  filter: sepia(0.5);
+}
+
+.card:nth-child(6)::after {
+  content: "<support>";
+}
+
+.card:nth-child(7) .card-image {
   filter: brightness(20%) grayscale(1);
 }
 
-.card-image-8 {
+.card:nth-child(7)::after {
+  content: "<lifes-style: none;>";
+}
+
+.card:nth-child(8) .card-image {
   filter: contrast(0.5) grayscale(1);
 }
 
+.card:nth-child(8)::after {
+  content: "<experience>";
+}
+
+.card-text {
+  font-variation-settings: "wght" var(--first-font-weidth);
+}
+
 .card-info {
-  font-variation-settings: 'wght' var(--first-font-weidth);
   margin: 25px 25px 27px 25px;
 }
 
 .card-place {
-  font-variation-settings: 'wght' var(--first-font-weidth);
   padding: 0 25px 25px 25px;
 }
 
@@ -269,78 +313,97 @@ dialog::backdrop {
 .card__icon-button {
   background: none;
   border: none;
+  padding: 0;
+  transition: opacity 0.3s ease;
+  margin-right: 5px;
+  max-height: 38px;
+}
 
+.card__icon-button:focus {
+  outline: none;
+}
+
+.card__icon-button:focus-visible {
+  border: 2px solid var(--font-color);
+  transition: border 0.3s ease;
 }
 
 .card__icon-button:hover .core {
-  animation: icon-hover .3s forwards;
+  animation: icon-hover 0.3s forwards;
 }
 
 .card__icon-button:hover .main-body {
-  animation: icon-hover .3s .05s forwards;
+  animation: icon-hover 0.3s 0.05s forwards;
 }
 
 .card__icon-button:active .core {
-  fill: red;
-  transition: .3s;
+  fill: var(--heart-color);
 }
 
 .card__icon-button:active .main-body {
-  fill: red;
-  transition: .3s 0.06s;
+  fill: var(--heart-color);
+}
+
+.like-icon {
+  width: 39px;
+  height: 36px;
 }
 
 .like-icon.is-liked .sparks {
-  animation: sparks .3s forwards;
+  animation: sparks 0.3s forwards;
+  fill: var(--heart-color);
+  transition: fill 0.3s ease;
 }
 
 .like-icon.is-liked .core {
-  animation: like .3s forwards;
+  animation: like 0.3s forwards;
+  fill: var(--heart-color);
+  transition: fill 0.3s ease;
 }
 
 .like-icon.is-liked .main-body {
-  animation: like .3s .05s forwards;
+  animation: like 0.3s 0.05s forwards;
+  fill: var(--heart-color);
+  transition: fill 0.3s ease;
 }
 
 .like-icon.is-liked .contour {
-  animation: like .3s .05s forwards;
+  animation: like 0.3s 0.05s forwards;
+  fill: var(--heart-color);
+  transition: fill 0.3s ease;
 }
 
 .like-icon.is-liked {
-  animation: like-scale .3s .01s forwards ease-in;
+  animation: like-scale 0.3s 0.01s forwards ease-in;
 }
 
 .contour {
-  fill: var(--font-color);
+  fill: var(--heart-contour-color);
   transform: translate(6px, 8px);
 }
 
 .main-body {
+  fill: var(--heart-hover-color);
   transform: translate(9px, 11px);
   opacity: 0;
-  transition: 0.03s;
+  transition: fill 0.3s 0.06s;
 }
 
 .core {
   transform: translate(15px, 14px);
   opacity: 0;
-  transition: 0.05s;
-  fill: var(--font-color);
+  transition: fill 0.3s;
+  fill: var(--heart-hover-color);
 }
 
 .sparks {
+  fill: var(--heart-color);
   opacity: 0;
   transform: translateY(2px);
 }
 
 .card__like-button {
   margin-right: 23px;
-}
-
-.card__icon-button {
-  padding: 0;
-  margin-right: 5px;
-  max-height: 38px;
 }
 
 .card__like-image-button {
@@ -354,10 +417,22 @@ dialog::backdrop {
 .cards__save-button {
   margin: auto;
   padding: 15px 19px 15px 19px;
+  margin-top: 52px;
+  margin-bottom: 105px;
 }
 
 .cards__save-button__image {
   width: 21px;
+  position: relative;
+  z-index: 5;
+}
+
+.floppy {
+  fill: var(--font-color);
+}
+
+.cards__save-button:hover .floppy {
+  fill: white;
 }
 
 @media (width <= 470px) {
@@ -367,5 +442,15 @@ dialog::backdrop {
 
   .header__subtitle {
     font-size: 14px;
+  }
+
+  .cards__save-button {
+    margin-bottom: 125px;
+  }
+
+  .cards__save-button__image {
+    display: block;
+    margin: auto;
+    margin-bottom: 8px;
   }
 }
