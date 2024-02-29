@@ -60,7 +60,7 @@
 
 .button__text {
   z-index: 1;
-  mix-blend-mode: difference;
+  color: var(--font-color);
 }
 
 .button::before {
@@ -73,6 +73,10 @@
   background-color: var(--font-color);
   transition: transform 0.5s ease-in-out;
   transform: translateX(-100%);
+}
+
+.button:hover .button__text {
+  mix-blend-mode: difference;
 }
 
 .button:hover::before {
@@ -355,13 +359,8 @@
   transition: fill 0.3s 0.05s ease;
 }
 
-.like-icon {
-  width: 39px;
-  height: 36px;
-}
-
 .like-icon.is-liked .sparks {
-  animation: sparks 0.3s ease-in alternate 1;
+  animation: sparks 0.3s 0.3s ease-in alternate 1;
   fill: var(--heart-color);
 }
 
@@ -382,7 +381,8 @@
 }
 
 .like-icon.is-liked .heart {
-  animation: like-scale 0.3s 0.01s alternate ease-in 1;
+  transform-origin: center;
+  animation: like-scale 0.3s 0.1s alternate ease-in 1;
 }
 
 .contour {
@@ -418,7 +418,7 @@
 }
 
 .cards__save-button__image {
-  mix-blend-mode: difference;
+  fill: var(--font-color);
   width: 21px;
   position: relative;
   z-index: 5;

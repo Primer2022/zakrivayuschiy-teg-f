@@ -22,11 +22,8 @@
     from {
         opacity: 0;
     }
-    50% {
-        opacity: 1;
-    }
     to {
-        opacity: 0;
+        opacity: 1;
     }
 }
 
@@ -42,9 +39,6 @@
 @keyframes like-scale {
     from {
         scale: 1;
-    }
-    50% {
-        scale: 1.5;
     }
     to {
         scale: 1.5;
