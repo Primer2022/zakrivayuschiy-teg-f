@@ -1,12 +1,12 @@
 :root {
-    --main-font: "Inter-Variable";
-    --second-font: "PressStart2P";
-    --first-font-weidth: 400;
-    --second-font-weidth: 700;
-    --background-color: #fff;
-    --font-color: #000;
-    --background-image: url(../images/background-light.jpg);
-    --heart-color: red;
-    --heart-hover-color: #000;
-    --heart-contour-color: #000;
+  --main-font: "Inter";
+  --second-font: "PressStart2P";
+  --first-font-weidth: 465;
+  --second-font-weidth: 785;
+  --background-color: #000;
+  --font-color: #00cc14;
+  --background-image: url(../images/background-dark.jpg);
+  --heart-color: red;
+  --heart-hover-color: #00cc14;
+  --heart-contour-color: #00cc14;
 }

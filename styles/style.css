@@ -23,7 +23,7 @@
 
 .floppy-dialog-text {
   font-size: 14px;
-  font-family: var(--second-font);
+  font-family: var(--second-font), Arial, fantasy;
   color: var(--font-color);
   line-height: 150%;
   text-transform: uppercase;
@@ -32,21 +32,21 @@
 .floppy-dialog-button {
   margin-top: 30px;
   width: 100%;
+  text-transform: uppercase;
 }
 
 .button {
   position: relative;
   display: block;
   background: var(--background-color);
-  font-family: var(--second-font), Arial, sans-serif;
+  font-family: var(--second-font), Arial, fantasy;
   font-size: 14px;
   padding: 10px 35px 10px 35px;
   border: 2px solid var(--font-color);
   cursor: pointer;
   overflow: hidden;
   color: var(--font-color);
-  transition: color 0.5s ease-in-out;
-  transition: box-shadow 0.3s ease;
+  transition: mix-blend-mode 0.5s ease-in-out;
 }
 
 .button:focus {
@@ -55,15 +55,12 @@
 
 .button:focus-visible {
   box-shadow: var(--font-color) 2px 2px;
+  transition: box-shadow 0.3s ease;
 }
 
 .button__text {
   z-index: 1;
-}
-
-.button:hover .button__text {
   mix-blend-mode: difference;
-  transition: mix-blend-mode 0.5s ease-in-out;
 }
 
 .button::before {
@@ -99,6 +96,9 @@
 }
 
 .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 100px;
   margin-bottom: 100px;
   padding-top: 136px;
@@ -108,8 +108,7 @@
 }
 
 .header__title {
-  text-align: center;
-  font-family: var(--second-font), Arial, sans-serif;
+  font-family: var(--second-font), Arial, fantasy;
   font-size: 65px;
   text-transform: uppercase;
   text-decoration: none;
@@ -120,9 +119,8 @@
 }
 
 .header__subtitle {
-  text-align: center;
   padding-top: 20px;
-  font-family: var(--second-font), Arial, sans-serif;
+  font-family: var(--second-font), Arial, fantasy;
   font-size: 23px;
   text-transform: uppercase;
 }
@@ -134,7 +132,6 @@
   flex-direction: column;
   gap: 12px;
   width: fit-content;
-  margin: auto;
 }
 
 .theme-menu__button {
@@ -143,7 +140,7 @@
   position: relative;
   background: none;
   border: none;
-  font-family: var(--second-font), Arial, sans-serif;
+  font-family: var(--second-font), Arial, fantasy;
   font-size: 14px;
   cursor: pointer;
   text-transform: uppercase;
@@ -174,15 +171,16 @@
   position: absolute;
   content: "";
   bottom: 0;
-  width: 0;
   display: block;
   height: 2px;
+  width: calc(100% - 0.8rem);
   background: var(--font-color);
-  transition: 0.3s ease;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
 .theme-menu__button:focus-visible::after {
-  width: calc(100% - 0.8rem);
+  transform: scaleX(1);
 }
 
 .card__list {
@@ -218,18 +216,25 @@
 }
 
 .card::after {
-  font-family: var(--second-font), Arial, sans-serif;
+  font-family: var(--second-font), Arial, fantasy;
   text-shadow: -1px -1px 0 var(--background-color),
     0 -1px 0 var(--background-color), 1px -1px 0 var(--background-color),
     1px 0 0 var(--background-color), 1px 1px 0 var(--background-color),
     0 1px 0 var(--background-color), -1px 1px 0 var(--background-color),
     -1px 0 0 var(--background-color);
   font-size: 14px;
-  line-height: 22.09px;
   position: absolute;
   top: 50px;
   right: 25px;
   opacity: 0.5;
+  mix-blend-mode: difference;
+}
+
+@supports (-webkit-text-stroke: 1px var(--background-color)) {
+  .card::after {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--background-color);
+  }
 }
 
 .card:nth-child(1)::after {
@@ -294,6 +299,7 @@
 
 .card-text {
   font-variation-settings: "wght" var(--first-font-weidth);
+  line-height: 21px;
 }
 
 .card-info {
@@ -301,7 +307,7 @@
 }
 
 .card-place {
-  padding: 0 25px 25px 25px;
+  margin: 0 25px 25px 25px;
 }
 
 .card__like {
@@ -311,10 +317,13 @@
 }
 
 .card__icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   padding: 0;
-  transition: opacity 0.3s ease;
+  transition: border 0.3s ease;
   margin-right: 5px;
   max-height: 38px;
 }
@@ -325,23 +334,25 @@
 
 .card__icon-button:focus-visible {
   border: 2px solid var(--font-color);
-  transition: border 0.3s ease;
 }
 
 .card__icon-button:hover .core {
-  animation: icon-hover 0.3s forwards;
+  fill: var(--heart-hover-color);
+  transition: opacity 0.3s ease;
 }
 
 .card__icon-button:hover .main-body {
-  animation: icon-hover 0.3s 0.05s forwards;
+  fill: var(--heart-hover-color);
 }
 
 .card__icon-button:active .core {
   fill: var(--heart-color);
+  transition: fill 0.3s ease;
 }
 
 .card__icon-button:active .main-body {
   fill: var(--heart-color);
+  transition: fill 0.3s 0.05s ease;
 }
 
 .like-icon {
@@ -350,68 +361,53 @@
 }
 
 .like-icon.is-liked .sparks {
-  animation: sparks 0.3s forwards;
+  animation: sparks 0.3s ease-in alternate 1;
   fill: var(--heart-color);
-  transition: fill 0.3s ease;
 }
 
 .like-icon.is-liked .core {
-  animation: like 0.3s forwards;
   fill: var(--heart-color);
-  transition: fill 0.3s ease;
+  transition: fill 0.3s ease-in;
 }
 
 .like-icon.is-liked .main-body {
-  animation: like 0.3s 0.05s forwards;
+  opacity: 1;
   fill: var(--heart-color);
-  transition: fill 0.3s ease;
+  transition: fill 0.3s .05s ease-in;
 }
 
 .like-icon.is-liked .contour {
-  animation: like 0.3s 0.05s forwards;
   fill: var(--heart-color);
-  transition: fill 0.3s ease;
+  transition: fill 0.3s .05s ease-in;
 }
 
-.like-icon.is-liked {
-  animation: like-scale 0.3s 0.01s forwards ease-in;
+.like-icon.is-liked .heart {
+  animation: like-scale 0.3s 0.01s alternate ease-in 1;
 }
 
 .contour {
   fill: var(--heart-contour-color);
-  transform: translate(6px, 8px);
+  transition: fill 0.3s ease-in;
 }
 
 .main-body {
-  fill: var(--heart-hover-color);
-  transform: translate(9px, 11px);
-  opacity: 0;
-  transition: fill 0.3s 0.06s;
+  position: absolute;
+  fill: var(--background-color);
+  transition: fill 0.3s ease-in;
 }
 
 .core {
-  transform: translate(15px, 14px);
-  opacity: 0;
-  transition: fill 0.3s;
-  fill: var(--heart-hover-color);
+  fill: var(--background-color);
+  transition: fill 0.3s ease-in;
 }
 
 .sparks {
   fill: var(--heart-color);
   opacity: 0;
-  transform: translateY(2px);
 }
 
 .card__like-button {
   margin-right: 23px;
-}
-
-.card__like-image-button {
-  width: 27px;
-  height: 24px;
-  padding: 0;
-  border: none;
-  background: none;
 }
 
 .cards__save-button {
@@ -422,6 +418,7 @@
 }
 
 .cards__save-button__image {
+  mix-blend-mode: difference;
   width: 21px;
   position: relative;
   z-index: 5;
@@ -432,10 +429,14 @@
 }
 
 .cards__save-button:hover .floppy {
-  fill: white;
+  fill: var(--background-color);
 }
 
 @media (width <= 470px) {
+  .header {
+    padding-top: 120px;
+  }
+
   .header__title {
     font-size: 49px;
   }

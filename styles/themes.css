@@ -1,5 +1,5 @@
 :root.theme-dark {
-  --main-font: "Inter-Variable";
+  --main-font: "Inter";
   --second-font: "PressStart2P";
   --first-font-weidth: 465;
   --second-font-weidth: 785;
@@ -17,7 +17,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --main-font: "Inter-Variable";
+    --main-font: "Inter";
     --second-font: "PressStart2P";
     --first-font-weidth: 465;
     --second-font-weidth: 785;
@@ -35,7 +35,7 @@
 }
 
 :root.theme-light {
-  --main-font: "Inter-Variable";
+  --main-font: "Inter";
   --second-font: "PressStart2P";
   --first-font-weidth: 400;
   --second-font-weidth: 700;
@@ -57,7 +57,7 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --main-font: "Inter-Variable";
+    --main-font: "Inter";
     --second-font: "PressStart2P";
     --first-font-weidth: 400;
     --second-font-weidth: 700;
