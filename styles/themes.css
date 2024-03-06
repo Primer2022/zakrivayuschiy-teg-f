@@ -9,6 +9,14 @@
   --heart-color: red;
   --heart-hover-color: #00cc14;
   --heart-contour-color: #00cc14;
+
+  .button__text {
+    color: var(--font-color);
+  }
+
+  .cards__save-button__image {
+    fill: var(--font-color);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,8 +33,12 @@
     --heart-contour-color: #00cc14;
   }
 
-  .cards__save-button:hover .floppy {
-    fill: var(--background-color);
+  .button__text {
+    color: var(--font-color);
+  }
+
+  .cards__save-button__image {
+    fill: var(--font-color);
   }
 }
 
@@ -42,11 +54,11 @@
   --heart-hover-color: #000;
   --heart-contour-color: #000;
 
-  .button:hover .button__text {
+  .button__text {
     color: var(--background-color);
   }
 
-  .cards__save-button:hover .floppy {
+  .cards__save-button__image {
     fill: var(--background-color);
   }
 }
@@ -63,13 +75,13 @@
     --heart-color: red;
     --heart-hover-color: #000;
     --heart-contour-color: #000;
-
-    .button:hover .button__text {
-      color: var(--background-color);
-    }
   }
 
-  .cards__save-button:hover .floppy {
+  .button__text {
+    color: var(--background-color);
+  }
+
+  .cards__save-button__image {
     fill: var(--background-color);
   }
 }

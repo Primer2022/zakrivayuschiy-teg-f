@@ -23,7 +23,7 @@
 
 .floppy-dialog-text {
   font-size: 14px;
-  font-family: var(--second-font), Arial, fantasy;
+  font-family: var(--second-font), fantasy;
   color: var(--font-color);
   line-height: 150%;
   text-transform: uppercase;
@@ -39,7 +39,7 @@
   position: relative;
   display: block;
   background: var(--background-color);
-  font-family: var(--second-font), Arial, fantasy;
+  font-family: var(--second-font), fantasy;
   font-size: 14px;
   padding: 10px 0 10px 0;
   border: 2px solid var(--font-color);
@@ -58,7 +58,6 @@
 }
 
 .button__text {
-  z-index: 1;
   color: var(--background-color);
   mix-blend-mode: difference;
   margin: auto;
@@ -109,7 +108,7 @@
 }
 
 .header__title {
-  font-family: var(--second-font), Arial, fantasy;
+  font-family: var(--second-font), fantasy;
   font-size: 65px;
   text-transform: uppercase;
   text-decoration: none;
@@ -121,7 +120,7 @@
 
 .header__subtitle {
   padding-top: 20px;
-  font-family: var(--second-font), Arial, fantasy;
+  font-family: var(--second-font), fantasy;
   font-size: 23px;
   text-transform: uppercase;
 }
@@ -141,17 +140,24 @@
   position: relative;
   background: none;
   border: none;
-  font-family: var(--second-font), Arial, fantasy;
+  font-family: var(--second-font), fantasy;
   font-size: 14px;
   cursor: pointer;
   text-transform: uppercase;
   transition: opacity 0.3s ease;
-  text-decoration: none;
-  background-image: linear-gradient(currentColor, currentColor);
-  background-position: 0% 100%;
-  background-repeat: no-repeat;
-  background-size: 0% 2px;
-  transition: background-size .3s
+}
+
+.theme-menu__button::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--font-color);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
 .theme-menu__button:disabled {
@@ -174,8 +180,9 @@
   opacity: 0.6;
 }
 
-.theme-menu__button:focus-visible {
-  background-size: 100% 2px;
+.theme-menu__button:focus-visible::after {
+  width: 100%;
+  transform: scaleX(1);
 }
 
 .card__list {
@@ -193,7 +200,7 @@
 }
 
 .card-title {
-  line-height: 19px;
+  line-height: 22px;
   max-width: 662px;
   font-size: 18px;
   padding: 3px 24px 7px 10px;
@@ -214,7 +221,7 @@
 }
 
 .card::after {
-  font-family: var(--second-font), Arial, fantasy;
+  font-family: var(--second-font), fantasy;
   text-shadow: -1px -1px 0 var(--background-color),
     0 -1px 0 var(--background-color), 1px -1px 0 var(--background-color),
     1px 0 0 var(--background-color), 1px 1px 0 var(--background-color),
@@ -316,6 +323,8 @@
 }
 
 .card__icon-button {
+  width: 39px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -337,22 +346,22 @@
 
 .card__icon-button:hover .core {
   fill: var(--heart-hover-color);
-  transition: fill 0.3s ease-in;
+  transition: fill 0.3s linear;
 }
 
 .card__icon-button:hover .main-body {
   fill: var(--heart-hover-color);
-  transition: fill 0.3s .05s ease-in;
+  transition: fill 0.3s .05s linear;
 }
 
 .card__icon-button:active .core {
   fill: var(--heart-color);
-  transition: fill 0.3s ease;
+  transition: fill 0.3s linear;
 }
 
 .card__icon-button:active .main-body {
   fill: var(--heart-color);
-  transition: fill 0.3s 0.05s ease;
+  transition: fill 0.3s 0.05s linear;
 }
 
 .like-icon.is-liked .sparks {
@@ -362,18 +371,17 @@
 
 .like-icon.is-liked .core {
   fill: var(--heart-color);
-  transition: fill 0.3s ease-in;
+  transition: fill 0.3s linear;
 }
 
 .like-icon.is-liked .main-body {
-  opacity: 1;
   fill: var(--heart-color);
-  transition: fill 0.3s .05s ease-in;
+  transition: fill 0.3s .05s linear
 }
 
 .like-icon.is-liked .contour {
   fill: var(--heart-color);
-  transition: fill 0.3s .06s ease-in;
+  transition: fill 0.3s .06s linear;
 }
 
 .like-icon.is-liked .heart {
@@ -388,12 +396,12 @@
 
 .main-body {
   fill: var(--background-color);
-  transition: fill 0.1s linear;
+  transition: fill 0.3s linear;
 }
 
 .core {
   fill: var(--background-color);
-  transition: fill 0.1s .05s linear;
+  transition: fill 0.3s .05s linear;
 }
 
 .sparks {
@@ -441,11 +449,6 @@
     height: 371px;
   }
 
-  .cards__save-button__image {
-    width: 28px;
-    height: 28px;
-  }
-
   .cards__save-button {
     margin-bottom: 125px;
     max-width: 310px;
@@ -453,6 +456,8 @@
 
   .cards__save-button__image {
     margin-bottom: 8px;
+    width: 28px;
+    height: 28px;
   }
 
   .card::after {
