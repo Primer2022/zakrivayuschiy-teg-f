@@ -9,4 +9,5 @@
   --heart-color: red;
   --heart-hover-color: #00cc14;
   --heart-contour-color: #00cc14;
+  --button-color: var(--font-color)
 }

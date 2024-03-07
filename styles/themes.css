@@ -9,14 +9,7 @@
   --heart-color: red;
   --heart-hover-color: #00cc14;
   --heart-contour-color: #00cc14;
-
-  .button__text {
-    color: var(--font-color);
-  }
-
-  .cards__save-button__image {
-    fill: var(--font-color);
-  }
+  --button-color: #00cc14;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,14 +24,7 @@
     --heart-color: red;
     --heart-hover-color: #00cc14;
     --heart-contour-color: #00cc14;
-  }
-
-  .button__text {
-    color: var(--font-color);
-  }
-
-  .cards__save-button__image {
-    fill: var(--font-color);
+    --button-color: #00cc14;
   }
 }
 
@@ -53,14 +39,7 @@
   --heart-color: red;
   --heart-hover-color: #000;
   --heart-contour-color: #000;
-
-  .button__text {
-    color: var(--background-color);
-  }
-
-  .cards__save-button__image {
-    fill: var(--background-color);
-  }
+  --button-color: #fff;
 }
 
 @media (prefers-color-scheme: light) {
@@ -75,13 +54,6 @@
     --heart-color: red;
     --heart-hover-color: #000;
     --heart-contour-color: #000;
-  }
-
-  .button__text {
-    color: var(--background-color);
-  }
-
-  .cards__save-button__image {
-    fill: var(--background-color);
+    --button-color: #fff;
   }
 }

@@ -14,11 +14,9 @@
 }
 
 .floppy-dialog-image {
-  color: var(--font-color);
-  margin-top: 12px;
-  margin-bottom: 12px;
+  fill: var(--font-color);
   width: 39px;
-  height: 39px;
+  z-index: 1;
 }
 
 .floppy-dialog-text {
@@ -58,7 +56,7 @@
 }
 
 .button__text {
-  color: var(--background-color);
+  color: var(--button-color);
   mix-blend-mode: difference;
   margin: auto;
 }
@@ -181,7 +179,6 @@
 }
 
 .theme-menu__button:focus-visible::after {
-  width: 100%;
   transform: scaleX(1);
 }
 
@@ -235,7 +232,8 @@
   mix-blend-mode: difference;
 }
 
-@supports (-webkit-text-stroke: 1px var(--background-color)) or (text-stroke: 1px var(--background-color)) {
+@supports (-webkit-text-stroke: 1px var(--background-color)) or
+  (text-stroke: 1px var(--background-color)) {
   .card::after {
     text-shadow: none;
     text-stroke: 1px var(--background-color);
@@ -351,7 +349,7 @@
 
 .card__icon-button:hover .main-body {
   fill: var(--heart-hover-color);
-  transition: fill 0.3s .05s linear;
+  transition: fill 0.3s 0.05s linear;
 }
 
 .card__icon-button:active .core {
@@ -376,12 +374,12 @@
 
 .like-icon.is-liked .main-body {
   fill: var(--heart-color);
-  transition: fill 0.3s .05s linear
+  transition: fill 0.3s 0.05s linear;
 }
 
 .like-icon.is-liked .contour {
   fill: var(--heart-color);
-  transition: fill 0.3s .06s linear;
+  transition: fill 0.3s 0.06s linear;
 }
 
 .like-icon.is-liked .heart {
@@ -401,7 +399,7 @@
 
 .core {
   fill: var(--background-color);
-  transition: fill 0.3s .05s linear;
+  transition: fill 0.3s 0.05s linear;
 }
 
 .sparks {
@@ -423,7 +421,7 @@
 
 .cards__save-button__image {
   mix-blend-mode: difference;
-  fill: var(--background-color);
+  fill: var(--button-color);
   width: 21px;
   z-index: 1;
 }
